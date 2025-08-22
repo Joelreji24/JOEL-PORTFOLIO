@@ -1,116 +1,381 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Joel R K — Portfolio</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <meta name="description" content="Portfolio of Joel R K — DMS Product Engineer and Product Owner with expertise in SQL and UI testing.">
-</head>
-<body class="bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 text-gray-900">
-  <header class="sticky top-0 z-50 bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow">
-    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
-      <a href="#" class="font-bold text-lg tracking-wide">Joel R K</a>
-      <nav class="space-x-4 text-sm">
-        <a href="#personal-profile" class="hover:text-yellow-300">Personal Profile</a>
-        <a href="#skills" class="hover:text-yellow-300">Skills</a>
-        <a href="#employment-profile" class="hover:text-yellow-300">Employment</a>
-        <a href="#academic-profile" class="hover:text-yellow-300">Academics</a>
-        <a href="#projects" class="hover:text-yellow-300">Projects</a>
-        <a href="#contact" class="hover:text-yellow-300">Contact</a>
+import React, { useState, useEffect } from 'react';
+import { Mail, Phone, Github, Linkedin, MapPin, Calendar, User, Code, Briefcase, GraduationCap, Award, ChevronDown, Menu, X } from 'lucide-react';
+
+export default function Portfolio() {
+  const [activeSection, setActiveSection] = useState('home');
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToSection = (sectionId) => {
+    document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
+    setActiveSection(sectionId);
+    setIsMenuOpen(false);
+  };
+
+  const skills = [
+    { name: 'SQL', level: 90 },
+    { name: 'HTML/CSS', level: 85 },
+    { name: 'MySQL', level: 88 },
+    { name: 'JavaScript', level: 80 },
+    { name: 'Django', level: 75 },
+    { name: 'Product Management', level: 85 }
+  ];
+
+  const experiences = [
+    {
+      company: 'TVS MOTOR COMPANY',
+      role: 'DMS PRODUCT ENGINEER',
+      duration: 'July 2023 - December 2024',
+      location: 'MACS INFOSOLUTION, Deployed at TVS Motor Company',
+      responsibilities: [
+        'Led development of Norton DMS tailored for Norton market as Product Owner',
+        'Conducted grooming sessions with developers for market-specific features',
+        'Delivered product demos to clients and incorporated feedback',
+        'Provided L2 level support using SQL for TVS DMS application',
+        'Analyzed backend data for integrity and database optimization',
+        'Supported IQube EV Vehicle Project sales operations'
+      ]
+    }
+  ];
+
+  const projects = [
+    {
+      title: 'Online Job Portal System',
+      description: 'An online Job Recruitment Process allowing users to register and apply for jobs',
+      tech: ['HTML', 'CSS', 'JavaScript']
+    },
+    {
+      title: 'Malware & Threat Intelligence System',
+      description: 'Intelligent system that detects and mitigates online malware threats using threat intelligence',
+      tech: ['HTML', 'CSS', 'Django', 'MySQL']
+    }
+  ];
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+      {/* Navigation */}
+      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-slate-900/95 backdrop-blur-sm shadow-lg' : 'bg-transparent'}`}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center py-4">
+            <div className="text-2xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+              Joel R K
+            </div>
+            
+            {/* Desktop Navigation */}
+            <div className="hidden md:flex space-x-8">
+              {['home', 'about', 'experience', 'projects', 'contact'].map((section) => (
+                <button
+                  key={section}
+                  onClick={() => scrollToSection(section)}
+                  className={`capitalize transition-colors hover:text-purple-400 ${
+                    activeSection === section ? 'text-purple-400' : 'text-white'
+                  }`}
+                >
+                  {section}
+                </button>
+              ))}
+            </div>
+
+            {/* Mobile Menu Button */}
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="md:hidden text-white p-2"
+            >
+              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
+        </div>
+
+        {/* Mobile Navigation */}
+        {isMenuOpen && (
+          <div className="md:hidden bg-slate-900/95 backdrop-blur-sm">
+            <div className="px-4 py-4 space-y-4">
+              {['home', 'about', 'experience', 'projects', 'contact'].map((section) => (
+                <button
+                  key={section}
+                  onClick={() => scrollToSection(section)}
+                  className="block w-full text-left capitalize text-white hover:text-purple-400 transition-colors"
+                >
+                  {section}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
       </nav>
+
+      {/* Hero Section */}
+      <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-purple-600/20 to-pink-600/20"></div>
+        <div className="text-center z-10 px-4">
+          <div className="mb-8">
+            <div className="w-32 h-32 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full mx-auto mb-6 flex items-center justify-center">
+              <User size={64} className="text-white" />
+            </div>
+          </div>
+          <h1 className="text-5xl md:text-7xl font-bold text-white mb-6">
+            Joel R K
+          </h1>
+          <p className="text-xl md:text-2xl text-purple-300 mb-8">
+            Product Engineer & Full Stack Developer
+          </p>
+          <p className="text-lg text-gray-300 max-w-2xl mx-auto mb-12">
+            Engineering Graduate with 1.5+ years of experience in product engineering and development. 
+            Passionate about creating innovative solutions and contributing to organizational growth.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <button
+              onClick={() => scrollToSection('projects')}
+              className="px-8 py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-full hover:from-purple-700 hover:to-pink-700 transition-all transform hover:scale-105"
+            >
+              View My Work
+            </button>
+            <button
+              onClick={() => scrollToSection('contact')}
+              className="px-8 py-3 border-2 border-purple-400 text-purple-400 rounded-full hover:bg-purple-400 hover:text-white transition-all"
+            >
+              Get In Touch
+            </button>
+          </div>
+        </div>
+        
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+          <ChevronDown size={32} className="text-white" />
+        </div>
+      </section>
+
+      {/* About Section */}
+      <section id="about" className="py-20 px-4">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-4xl md:text-5xl font-bold text-center text-white mb-16">
+            About Me
+          </h2>
+          
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div>
+              <h3 className="text-2xl font-semibold text-purple-400 mb-6">Personal Profile</h3>
+              <p className="text-gray-300 text-lg leading-relaxed mb-8">
+                I am an Engineering Graduate in Computer Science with 1.5+ years of experience 
+                in a prestigious organization. I thrive in challenging and prosperous environments 
+                where I can contribute creatively to both organizational and personal growth.
+              </p>
+              
+              <div className="space-y-4">
+                <div className="flex items-center space-x-3">
+                  <Calendar className="text-purple-400" size={20} />
+                  <span className="text-gray-300">Born: April 24, 2001</span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <MapPin className="text-purple-400" size={20} />
+                  <span className="text-gray-300">Kerala, India</span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <User className="text-purple-400" size={20} />
+                  <span className="text-gray-300">Languages: English, Malayalam, Tamil</span>
+                </div>
+              </div>
+            </div>
+            
+            <div>
+              <h3 className="text-2xl font-semibold text-purple-400 mb-6">Skills</h3>
+              <div className="space-y-4">
+                {skills.map((skill, index) => (
+                  <div key={index}>
+                    <div className="flex justify-between mb-2">
+                      <span className="text-gray-300">{skill.name}</span>
+                      <span className="text-purple-400">{skill.level}%</span>
+                    </div>
+                    <div className="w-full bg-gray-700 rounded-full h-2">
+                      <div
+                        className="bg-gradient-to-r from-purple-400 to-pink-400 h-2 rounded-full transition-all duration-1000"
+                        style={{ width: `${skill.level}%` }}
+                      ></div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Experience Section */}
+      <section id="experience" className="py-20 px-4 bg-slate-800/50">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-4xl md:text-5xl font-bold text-center text-white mb-16">
+            Experience
+          </h2>
+          
+          <div className="space-y-8">
+            {experiences.map((exp, index) => (
+              <div key={index} className="bg-gradient-to-r from-slate-800 to-slate-700 rounded-xl p-8 shadow-xl">
+                <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
+                  <div>
+                    <h3 className="text-2xl font-semibold text-purple-400 mb-2">{exp.role}</h3>
+                    <p className="text-xl text-white mb-2">{exp.company}</p>
+                    <p className="text-gray-400">{exp.location}</p>
+                  </div>
+                  <div className="text-purple-300 font-medium mt-4 md:mt-0">
+                    {exp.duration}
+                  </div>
+                </div>
+                
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div>
+                    <h4 className="text-lg font-semibold text-white mb-4 flex items-center">
+                      <Briefcase className="mr-2 text-purple-400" size={20} />
+                      Key Responsibilities
+                    </h4>
+                    <ul className="space-y-2">
+                      {exp.responsibilities.slice(0, 3).map((resp, idx) => (
+                        <li key={idx} className="text-gray-300 flex items-start">
+                          <span className="text-purple-400 mr-2">•</span>
+                          {resp}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-semibold text-white mb-4 flex items-center">
+                      <Award className="mr-2 text-purple-400" size={20} />
+                      Additional Achievements
+                    </h4>
+                    <ul className="space-y-2">
+                      {exp.responsibilities.slice(3).map((resp, idx) => (
+                        <li key={idx} className="text-gray-300 flex items-start">
+                          <span className="text-purple-400 mr-2">•</span>
+                          {resp}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+          
+          <div className="mt-12 bg-gradient-to-r from-slate-800 to-slate-700 rounded-xl p-8">
+            <h3 className="text-2xl font-semibold text-purple-400 mb-4 flex items-center">
+              <GraduationCap className="mr-3" size={24} />
+              Education
+            </h3>
+            <div className="text-white">
+              <p className="text-xl font-semibold mb-2">Bachelor of Engineering – Computer Science</p>
+              <p className="text-purple-300 mb-2">PONJESLY COLLEGE OF ENGINEERING, Nagercoil, Tamil Nadu</p>
+              <p className="text-gray-400">June 2023 • CGPA: 7.66/10.0</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Projects Section */}
+      <section id="projects" className="py-20 px-4">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-4xl md:text-5xl font-bold text-center text-white mb-16">
+            Projects
+          </h2>
+          
+          <div className="grid md:grid-cols-2 gap-8">
+            {projects.map((project, index) => (
+              <div key={index} className="bg-gradient-to-br from-slate-800 to-slate-700 rounded-xl p-8 shadow-xl hover:transform hover:scale-105 transition-all duration-300">
+                <div className="flex items-center mb-4">
+                  <Code className="text-purple-400 mr-3" size={24} />
+                  <h3 className="text-xl font-semibold text-white">{project.title}</h3>
+                </div>
+                <p className="text-gray-300 mb-6 leading-relaxed">{project.description}</p>
+                <div className="flex flex-wrap gap-2">
+                  {project.tech.map((tech, techIndex) => (
+                    <span
+                      key={techIndex}
+                      className="px-3 py-1 bg-purple-600/30 text-purple-300 rounded-full text-sm border border-purple-500/30"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section id="contact" className="py-20 px-4 bg-slate-800/50">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-4xl md:text-5xl font-bold text-center text-white mb-16">
+            Get In Touch
+          </h2>
+          
+          <div className="grid md:grid-cols-2 gap-12">
+            <div>
+              <h3 className="text-2xl font-semibold text-purple-400 mb-8">Let's Connect</h3>
+              <p className="text-gray-300 text-lg mb-8 leading-relaxed">
+                I'm always interested in new opportunities and exciting projects. 
+                Feel free to reach out if you'd like to collaborate or just say hello!
+              </p>
+              
+              <div className="space-y-6">
+                <a href="mailto:rkjoel007@gmail.com" className="flex items-center space-x-4 text-gray-300 hover:text-purple-400 transition-colors group">
+                  <div className="w-12 h-12 bg-purple-600/20 rounded-full flex items-center justify-center group-hover:bg-purple-600/30 transition-colors">
+                    <Mail size={20} />
+                  </div>
+                  <span>rkjoel007@gmail.com</span>
+                </a>
+                
+                <a href="tel:+916238971386" className="flex items-center space-x-4 text-gray-300 hover:text-purple-400 transition-colors group">
+                  <div className="w-12 h-12 bg-purple-600/20 rounded-full flex items-center justify-center group-hover:bg-purple-600/30 transition-colors">
+                    <Phone size={20} />
+                  </div>
+                  <span>+91 62389 71386</span>
+                </a>
+                
+                <a href="https://github.com/Joelreji24" className="flex items-center space-x-4 text-gray-300 hover:text-purple-400 transition-colors group" target="_blank" rel="noopener noreferrer">
+                  <div className="w-12 h-12 bg-purple-600/20 rounded-full flex items-center justify-center group-hover:bg-purple-600/30 transition-colors">
+                    <Github size={20} />
+                  </div>
+                  <span>GitHub Profile</span>
+                </a>
+                
+                <a href="https://www.linkedin.com/in/joel-r-k-662668231" className="flex items-center space-x-4 text-gray-300 hover:text-purple-400 transition-colors group" target="_blank" rel="noopener noreferrer">
+                  <div className="w-12 h-12 bg-purple-600/20 rounded-full flex items-center justify-center group-hover:bg-purple-600/30 transition-colors">
+                    <Linkedin size={20} />
+                  </div>
+                  <span>LinkedIn Profile</span>
+                </a>
+              </div>
+            </div>
+            
+            <div className="bg-gradient-to-br from-slate-800 to-slate-700 rounded-xl p-8">
+              <h3 className="text-2xl font-semibold text-purple-400 mb-6">Address</h3>
+              <div className="text-gray-300 leading-relaxed">
+                <p>Elikottu Charuvila Puthen Veedu</p>
+                <p>Elikodu PO, Vilakkudy</p>
+                <p>Kollam, PIN: 691322</p>
+                <p>Kerala, India</p>
+              </div>
+              
+              <div className="mt-8 p-6 bg-purple-600/10 rounded-lg border border-purple-500/20">
+                <p className="text-purple-300 text-center italic">
+                  "Ready to contribute creatively to challenging and prosperous environments"
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="py-8 text-center text-gray-400 border-t border-slate-700">
+        <p>&copy; 2024 Joel R K. All rights reserved.</p>
+      </footer>
     </div>
-  </header>
-
-  <main class="max-w-6xl mx-auto px-4">
-    <!-- Personal Profile -->
-    <section id="personal-profile" class="py-10">
-      <h2 class="text-2xl font-semibold text-purple-800">PERSONAL PROFILE</h2>
-      <p class="mt-2 text-gray-700">I am an Engineering Graduate in Computer Science and have 1.5 + years of experience in a prestigious organization. I wish to work in a challenging and prosperous environment, where I can contribute creatively to the growth and well-being of both for organization and myself.</p>
-    </section>
-
-    <!-- Contact -->
-    <section id="contact" class="py-10">
-      <h2 class="text-2xl font-semibold text-green-700">CONTACT</h2>
-      <p class="mt-2 text-gray-700">Phone: +91 6238971386</p>
-      <p class="mt-2 text-gray-700">Email: rkjoel007@gmail.com</p>
-      <h3 class="mt-4 font-semibold">LINKS</h3>
-      <p class="text-sm"><a class="underline text-blue-700" href="https://github.com/Joelreji24" target="_blank">GitHub</a></p>
-      <p class="text-sm"><a class="underline text-blue-700" href="https://www.linkedin.com/in/joel-r-k-662668231" target="_blank">LinkedIn</a></p>
-      <h3 class="mt-4 font-semibold">ADDRESS</h3>
-      <p class="text-gray-700 text-sm">Elikottu Charuvila Puthen Veedu, Elikodu PO, Vilakkudy, Kollam, PIN: 691322, Kerala, India</p>
-      <h3 class="mt-4 font-semibold">OTHER DETAILS</h3>
-      <ul class="list-disc pl-5 text-gray-700 text-sm">
-        <li>Nationality: Indian</li>
-        <li>Date of Birth: 24/04/2001</li>
-        <li>Gender: Male</li>
-        <li>Religion: Christian</li>
-        <li>Marital Status: Unmarried</li>
-        <li>Languages Known: English, Malayalam, Tamil</li>
-      </ul>
-    </section>
-
-    <!-- Skills -->
-    <section id="skills" class="py-10">
-      <h2 class="text-2xl font-semibold text-pink-700">SKILLS SET</h2>
-      <p class="mt-2 text-gray-700">SQL, HTML, CSS, MySQL</p>
-      <h2 class="text-2xl font-semibold text-indigo-700 mt-6">SOFT SKILLS</h2>
-      <p class="mt-2 text-gray-700">Product Management, UI Testing, Communication, Confidentiality, Critical Thinking, Problem Solving</p>
-    </section>
-
-    <!-- Employment Profile -->
-    <section id="employment-profile" class="py-10">
-      <h2 class="text-2xl font-semibold text-blue-700">EMPLOYMENT PROFILE</h2>
-      <p class="mt-2 text-gray-700 font-semibold">TVS MOTOR COMPANY: July 2023 to December 2024</p>
-      <p class="text-gray-700">DMS PRODUCT ENGINEER</p>
-      <p class="text-gray-700">Worked at MACS INFOSOLUTION, Deployed at TVS Motor Company</p>
-
-      <h3 class="mt-4 font-semibold text-purple-700">Norton Dealership Management System:</h3>
-      <ul class="list-disc pl-5 text-gray-700 text-sm">
-        <li>Worked as a Product Owner.</li>
-        <li>Led the development of Norton DMS, tailored for the Norton market.</li>
-        <li>Conducted grooming sessions with developers to define market-specific features.</li>
-        <li>Delivered product demos to clients, incorporating their feedback.</li>
-        <li>Collaborated with clients to gather new requirements and created detailed Jira tickets.</li>
-        <li>Coordinated with developers and testers to ensure timely, high-quality task completion.</li>
-      </ul>
-
-      <h3 class="mt-4 font-semibold text-purple-700">TVS DMS:</h3>
-      <ul class="list-disc pl-5 text-gray-700 text-sm">
-        <li>Provided L2 level support using SQL for TVS DMS, an application used by TVS dealers for data on service, vehicle details, sales, and parts.</li>
-        <li>Analyzed backend data to ensure data integrity and optimize database performance.</li>
-      </ul>
-
-      <h3 class="mt-4 font-semibold text-purple-700">IQube EV Vehicle Project:</h3>
-      <ul class="list-disc pl-5 text-gray-700 text-sm">
-        <li>Provided L2 level support for sales operations.</li>
-        <li>Analysed and resolved issues related to sales data.</li>
-        <li>Ensured smooth operation of the sales module within the DMS.</li>
-      </ul>
-    </section>
-
-    <!-- Academic Profile -->
-    <section id="academic-profile" class="py-10">
-      <h2 class="text-2xl font-semibold text-green-700">ACADEMIC PROFILE</h2>
-      <p class="mt-2 text-gray-700">Bachelor of Engineering – Computer Science – June 2023</p>
-      <p class="text-gray-700">PONJESLY COLLEGE OF ENGINEERING, Nagercoil, Tamil Nadu</p>
-      <p class="text-gray-700">Cumulative GPA: 7.66/10.0</p>
-    </section>
-
-    <!-- University Projects -->
-    <section id="projects" class="py-10">
-      <h2 class="text-2xl font-semibold text-pink-700">UNIVERSITY PROJECTS</h2>
-      <p class="mt-2 text-gray-700"><strong>ONLINE JOB PORTAL SYSTEM:</strong> An online Job Recruitment Process, which allows users to register and apply for a job in the portal</p>
-      <p class="mt-2 text-gray-700"><strong>ANALYSING ONLINE MALWARE & THREAT INTELLIGENCE:</strong> Developed an intelligent system that detects and mitigates online malware threats by leveraging the power of threat intelligence</p>
-      <p class="text-gray-700 text-sm">Technologies used: HTML, CSS, DJANGO, MYSQL.</p>
-    </section>
-  </main>
-
-  <footer class="py-8 text-center text-xs bg-gradient-to-r from-blue-600 to-purple-600 text-white">
-    © <span id="year"></span> Joel R K. Built with Tailwind CSS.
-  </footer>
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
-</body>
-</html>
+  );
+}
