@@ -1,35 +1,116 @@
-<!-- TODO 1: Create the HTML Boilerplate -->
-
-<!-- TODO 2: Add Your previous projects' HTML into the public folder -->
-
-<!-- TODO 3: Take screenshots of your project previews and add the images to the images folder -->
-
-<!-- TODO 4: Add titles/subtitles etc. -->
-
-<!-- TODO 5: Add a link to the project pages -->
-
-<!-- TODO 6: Add images to show the project previews
-HINT for TODO 6: You can use the height attribute set to 200 to make the image smaller:
-https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#attr-height -->
-
-<!-- TODO 7: Add the Contact Me and About Me page links -->
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PORTFOLIO</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Joel R K — Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <meta name="description" content="Portfolio of Joel R K — DMS Product Engineer and Product Owner with expertise in SQL and UI testing.">
 </head>
-<body>
-    <h2>JOEL R K</h2>
-    <h4>WEB DEVELOPER INTERN</h4>
-    <hr>
-    <a href="https://www.linkedin.com/in/joel-r-k-662668231/"><h3>The LinkedIn profile </h3></a>
-    <img width="450" src="./assets/images/Linkdeln profile.jpg">
-    <br>
-    <hr>
-    <a href="./public/Joel RK RESUME 2024 .pdf" download"> Download CV</a>
+<body class="bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 text-gray-900">
+  <header class="sticky top-0 z-50 bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+      <a href="#" class="font-bold text-lg tracking-wide">Joel R K</a>
+      <nav class="space-x-4 text-sm">
+        <a href="#personal-profile" class="hover:text-yellow-300">Personal Profile</a>
+        <a href="#skills" class="hover:text-yellow-300">Skills</a>
+        <a href="#employment-profile" class="hover:text-yellow-300">Employment</a>
+        <a href="#academic-profile" class="hover:text-yellow-300">Academics</a>
+        <a href="#projects" class="hover:text-yellow-300">Projects</a>
+        <a href="#contact" class="hover:text-yellow-300">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4">
+    <!-- Personal Profile -->
+    <section id="personal-profile" class="py-10">
+      <h2 class="text-2xl font-semibold text-purple-800">PERSONAL PROFILE</h2>
+      <p class="mt-2 text-gray-700">I am an Engineering Graduate in Computer Science and have 1.5 + years of experience in a prestigious organization. I wish to work in a challenging and prosperous environment, where I can contribute creatively to the growth and well-being of both for organization and myself.</p>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="py-10">
+      <h2 class="text-2xl font-semibold text-green-700">CONTACT</h2>
+      <p class="mt-2 text-gray-700">Phone: +91 6238971386</p>
+      <p class="mt-2 text-gray-700">Email: rkjoel007@gmail.com</p>
+      <h3 class="mt-4 font-semibold">LINKS</h3>
+      <p class="text-sm"><a class="underline text-blue-700" href="https://github.com/Joelreji24" target="_blank">GitHub</a></p>
+      <p class="text-sm"><a class="underline text-blue-700" href="https://www.linkedin.com/in/joel-r-k-662668231" target="_blank">LinkedIn</a></p>
+      <h3 class="mt-4 font-semibold">ADDRESS</h3>
+      <p class="text-gray-700 text-sm">Elikottu Charuvila Puthen Veedu, Elikodu PO, Vilakkudy, Kollam, PIN: 691322, Kerala, India</p>
+      <h3 class="mt-4 font-semibold">OTHER DETAILS</h3>
+      <ul class="list-disc pl-5 text-gray-700 text-sm">
+        <li>Nationality: Indian</li>
+        <li>Date of Birth: 24/04/2001</li>
+        <li>Gender: Male</li>
+        <li>Religion: Christian</li>
+        <li>Marital Status: Unmarried</li>
+        <li>Languages Known: English, Malayalam, Tamil</li>
+      </ul>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills" class="py-10">
+      <h2 class="text-2xl font-semibold text-pink-700">SKILLS SET</h2>
+      <p class="mt-2 text-gray-700">SQL, HTML, CSS, MySQL</p>
+      <h2 class="text-2xl font-semibold text-indigo-700 mt-6">SOFT SKILLS</h2>
+      <p class="mt-2 text-gray-700">Product Management, UI Testing, Communication, Confidentiality, Critical Thinking, Problem Solving</p>
+    </section>
+
+    <!-- Employment Profile -->
+    <section id="employment-profile" class="py-10">
+      <h2 class="text-2xl font-semibold text-blue-700">EMPLOYMENT PROFILE</h2>
+      <p class="mt-2 text-gray-700 font-semibold">TVS MOTOR COMPANY: July 2023 to December 2024</p>
+      <p class="text-gray-700">DMS PRODUCT ENGINEER</p>
+      <p class="text-gray-700">Worked at MACS INFOSOLUTION, Deployed at TVS Motor Company</p>
+
+      <h3 class="mt-4 font-semibold text-purple-700">Norton Dealership Management System:</h3>
+      <ul class="list-disc pl-5 text-gray-700 text-sm">
+        <li>Worked as a Product Owner.</li>
+        <li>Led the development of Norton DMS, tailored for the Norton market.</li>
+        <li>Conducted grooming sessions with developers to define market-specific features.</li>
+        <li>Delivered product demos to clients, incorporating their feedback.</li>
+        <li>Collaborated with clients to gather new requirements and created detailed Jira tickets.</li>
+        <li>Coordinated with developers and testers to ensure timely, high-quality task completion.</li>
+      </ul>
+
+      <h3 class="mt-4 font-semibold text-purple-700">TVS DMS:</h3>
+      <ul class="list-disc pl-5 text-gray-700 text-sm">
+        <li>Provided L2 level support using SQL for TVS DMS, an application used by TVS dealers for data on service, vehicle details, sales, and parts.</li>
+        <li>Analyzed backend data to ensure data integrity and optimize database performance.</li>
+      </ul>
+
+      <h3 class="mt-4 font-semibold text-purple-700">IQube EV Vehicle Project:</h3>
+      <ul class="list-disc pl-5 text-gray-700 text-sm">
+        <li>Provided L2 level support for sales operations.</li>
+        <li>Analysed and resolved issues related to sales data.</li>
+        <li>Ensured smooth operation of the sales module within the DMS.</li>
+      </ul>
+    </section>
+
+    <!-- Academic Profile -->
+    <section id="academic-profile" class="py-10">
+      <h2 class="text-2xl font-semibold text-green-700">ACADEMIC PROFILE</h2>
+      <p class="mt-2 text-gray-700">Bachelor of Engineering – Computer Science – June 2023</p>
+      <p class="text-gray-700">PONJESLY COLLEGE OF ENGINEERING, Nagercoil, Tamil Nadu</p>
+      <p class="text-gray-700">Cumulative GPA: 7.66/10.0</p>
+    </section>
+
+    <!-- University Projects -->
+    <section id="projects" class="py-10">
+      <h2 class="text-2xl font-semibold text-pink-700">UNIVERSITY PROJECTS</h2>
+      <p class="mt-2 text-gray-700"><strong>ONLINE JOB PORTAL SYSTEM:</strong> An online Job Recruitment Process, which allows users to register and apply for a job in the portal</p>
+      <p class="mt-2 text-gray-700"><strong>ANALYSING ONLINE MALWARE & THREAT INTELLIGENCE:</strong> Developed an intelligent system that detects and mitigates online malware threats by leveraging the power of threat intelligence</p>
+      <p class="text-gray-700 text-sm">Technologies used: HTML, CSS, DJANGO, MYSQL.</p>
+    </section>
+  </main>
+
+  <footer class="py-8 text-center text-xs bg-gradient-to-r from-blue-600 to-purple-600 text-white">
+    © <span id="year"></span> Joel R K. Built with Tailwind CSS.
+  </footer>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
